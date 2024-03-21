@@ -10,5 +10,4 @@ public class AgroApplication {
 		SpringApplication.run(AgroApplication.class, args);
 		System.out.println("prudhvichitti");
 	}
-
 }

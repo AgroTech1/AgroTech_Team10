@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.jsp.Agro.Repo.AddressRepo;
 import com.jsp.Agro.Repo.UserRepo;
 import com.jsp.Agro.entity.User;
 
@@ -14,13 +15,18 @@ import com.jsp.Agro.entity.User;
 public class UserDao{
 	@Autowired
 	private UserRepo repo;
+	@Autowired
+	private AddressRepo repo1;
 	
-	//save
+	//>>>>>>>>>>>>>>>>save<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
 	public User saveUser(User user) {
 		return repo.save(user);
+		
+		
 	}
 	
-	//fetch
+	//>>>>>>>>>>>>>>>>>>fetch<<<<<<<<<<<<<<<<<<<<<<<<,
 	public User fetchUser(int id) {
 	Optional<User>db=repo.findById(id);
 	if(db.isPresent()){
@@ -29,9 +35,10 @@ public class UserDao{
 		return null;
 		
 	}
-	// update
+	
+	
+	//>>>>>>>>>>>>>>>>>>>>>>>>> update<<<<<<<<<<<<<<<<<<<<<<<<
 		public User updateUser(User user) {
-			// TODO Auto-generated method stub
 			Optional<User> db = repo.findById(user.getId());
 			User m = db.get();
 			if (db.isPresent())
@@ -40,6 +47,13 @@ public class UserDao{
 				}
 			if (user.getEmail() == null) {
 				user.setEmail(m.getEmail());
+			}
+			if
+				(user.getAge()==0){
+					user.setAge(m.getAge());
+			}
+			if(user.getGender()==null) {
+				user.setGender(m.getGender());
 			}
 			if (user.getLastName() == null) {
 				user.setLastName(m.getLastName());
@@ -50,9 +64,18 @@ public class UserDao{
 			if (user.getPhone() != 0) {
 				user.setPhone(m.getPhone());
 			}
+			if(user.getUserType()==null) {
+				user.setUserType(m.getUserType());
+			}
+			if(user.getAddress()==null) {
+				user.setAddress(m.getAddress());
+			}
 			return repo.save(user);
 		}
-// delete
+		
+		
+		
+//>>>>>>>>>>>>>>>>>>>>>>> delete<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 		public User DeleteById(int id) {
 			Optional<User> db = repo.findById(id);
 			if (db.isEmpty())
@@ -63,21 +86,34 @@ public class UserDao{
 
 			}
 		}
-//fetchAll
+		
+//>>>>>>>>>>>>>>>>>>>>>>>>fetchAll<<<<<<<<<<<<<<<<<<<<
 		public List <User> FetchAll() {
 			return repo.findAll();
 			
 		}
+//>>>>>>>>>>>>>>>fetch by email<<<<<<<<<<<<<<<<<<
+		
 		public User fetchByEmail(String email) {
-			User db = repo.fetchbyEmail(email);
-			if(db!=null) {
-				return db;
-			}else {
-				return null;
-			}
+			return repo.fetchbyEmail(email);
 		}
+		
+		
+//		public User fetchByEmail(String email) {
+//			User db = repo.fetchbyEmail(email);
+//			if(db!=null) {
+//				return db;
+//			}else {
+//				return null;
+			
 
-	}
+public User fetchByImage(int id) {
+	return null;
+	
+}
+
+}	
+
 	
 
 
